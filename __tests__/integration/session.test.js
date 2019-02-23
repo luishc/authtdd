@@ -1,11 +1,11 @@
 const request = require('supertest');
 
 const app = require('../../src/app');
-const User = require('../../src/app/models/User');
+const factory = require('../utils/factory');
 
 describe('Authentication', () => {
     it('Should authenticate with valid credentials', async () => {
-        const user = await User.create({nome: 'luis', email: 'lhcnascimento@gmail.com', password: '123456'});
+        const user = await factory.create('User', { password: '123456' });
 
         const response = await request(app)
             .post('/sessions')
@@ -18,7 +18,7 @@ describe('Authentication', () => {
     });
 
     it('Should not authenticate with invalid credentials', async () => {
-        const user = await User.create({nome: 'luis', email: 'lhcnascimento@gmail.com', password: '123456'});
+        const user = await factory.create('User');
 
         const response = await request(app)
             .post('/sessions')
@@ -31,7 +31,7 @@ describe('Authentication', () => {
     });
 
     it('Should return jwt token when authenticated', async () => {
-        const user = await User.create({nome: 'luis', email: 'lhcnascimento@gmail.com', password: '123456'});
+        const user = await factory.create('User', { password: '123456' });
 
         const response = await request(app)
             .post('/sessions')
