@@ -30,6 +30,19 @@ describe('Authentication', () => {
         expect(response.status).toBe(401);
     });
 
+    it('Should not authenticate with email that not exist', async () => {
+        const user = await factory.create('User');
+
+        const response = await request(app)
+            .post('/sessions')
+            .send({
+                email: "teste@teste.com",
+                password: "123"
+            });
+
+        expect(response.status).toBe(401);
+    });
+
     it('Should return jwt token when authenticated', async () => {
         const user = await factory.create('User', { password: '123456' });
 
