@@ -9,11 +9,15 @@
     "test": "set NODE_ENV=test&& jest"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
+    "factory-girl": "^5.0.4",
+    "jsonwebtoken": "^8.5.0",
     "mongoose": "^5.4.14"
   },
   "devDependencies": {
-    "jest": "^24.1.0"
+    "jest": "^24.1.0",
+    "supertest": "^3.4.2"
   }
 }
